@@ -17,10 +17,6 @@ O Big-Data-Python é um trabalho acadêmico que tem como objetivo aplicar concei
 
 A base de dados utilizada possui mais de 500 mil registros em Excel, garantindo volume suficiente para simular cenários reais de análise de dados em larga escala.
 
-Foram desenvolvidos:
-✅ 3 relatórios analíticos com informações relevantes extraídas da base.
-✅ 3 gráficos para visualização clara e intuitiva dos resultados.
-
 🛠️ Tecnologias utilizadas
 
 Python 3.11+
