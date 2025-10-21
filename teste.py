@@ -24,4 +24,4 @@ df_completo = pd.concat(abas.values(), ignore_index=True)
 
 #numero_itens = len("bigData.xlsx")
 
-print(df_completo[["Funcionário", "Função", "Data do Exame", "Responsável ASO"]])
+print(df_completo[["Funcionário", "Função", "Data do Exame", "Responsável ASO"]])   
