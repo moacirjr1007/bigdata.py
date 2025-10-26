@@ -3,7 +3,6 @@ import pandas as pd
 arquivo_excel = "bigData.xlsx"
 
 def gerar_relatorio_completo():
-    """Lê todas as abas, junta, limpa qualquer NaN e salva."""
     try:
         abas = pd.read_excel(arquivo_excel, sheet_name=None)
         relatorio_completo = pd.concat(abas.values(), ignore_index=True)
