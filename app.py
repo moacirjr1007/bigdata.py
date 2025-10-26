@@ -18,14 +18,7 @@ def gerar_relatorio():
         if escolha == "relatorio_completo":
             nome_arquivo_gerado = relatorios_graficos.gerar_relatorio_completo()
         elif escolha == "relatorio_funcionarios":
-            try:
-                nome_arquivo_gerado = relatorios_graficos.gerar_relatorio_funcionarios()
-            except Exception as e:
-                print(f"--- ERRO DENTRO DE relatorios_graficos.py ---")
-                print(f"Erro na função gerar_relatorio_funcionarios: {e}")
-                print(f"------------------------------------------------")
-                nome_arquivo_gerado = None
-
+            nome_arquivo_gerado = relatorios_graficos.gerar_relatorio_funcionarios()
         elif escolha == "relatorio_exames":
             pass 
         elif escolha == "grafico_exames":
