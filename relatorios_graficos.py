@@ -35,3 +35,41 @@ def gerar_relatorio_funcionarios():
 
         print(f"Erro ao gerar relatório de funcionários: {e}")
         return None
+
+def gerar_relatorio_exames():
+    try:
+        abas = pd.read_excel(arquivo_excel, sheet_name=None)
+        relatorio_completo = pd.concat(abas.values(), ignore_index=True)
+
+        relatorio_final = relatorio_completo.dropna(subset=["Exames", "Data do Exame"])
+
+        relatorio_exibicao = relatorio_final[["Exames", "Data do Exame"]]
+
+        nome_arquivo_saida = "Relatorio_Exames.xlsx"
+
+        relatorio_exibicao.to_excel(nome_arquivo_saida, index = False)
+
+        return nome_arquivo_saida
+    except Exception as e:
+
+        print(f"Erro ao gerar relatório de exames: {e}")
+        return None
+    
+def gerar_relatorio_funcao():
+    try:
+        abas = pd.read_excel(arquivo_excel, sheet_name=None)
+        relatorio_completo = pd.concat(abas.values(), ignore_index=True)
+
+        relatorio_final = relatorio_completo.dropna(subset=["Função", "Data do Exame"])
+
+        relatorio_exibicao = relatorio_final[["Função", "Data do Exame"]]
+
+        nome_arquivo_saida = "Relatorio_Funcao.xlsx"
+
+        relatorio_exibicao.to_excel(nome_arquivo_saida, index = False)
+
+        return nome_arquivo_saida
+    except Exception as e:
+
+        print(f"Erro ao gerar relatório de exames: {e}")
+        return None
