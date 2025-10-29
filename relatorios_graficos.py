@@ -1,10 +1,31 @@
-import pandas as pd, matplotlib.pyplot as plt, io, os
-from openpyxl import Workbook, drawing
+# Biblietacas utilizadas:
 
+import pandas as pd # Especialista em ler e munipular tabelas.
+import matplotlib.pyplot as plt # Utilizado para gerar gráficos.
+import io # Salva dados (como imagens de gráficos) na memória.
+import os # O 'os' (Sistema Operacional) nos deixa interagir com arquivos e pastas.
+
+from openpyxl import Workbook, drawing  
+# É uma ferramenta extra para trabalhar com arquivos Excel (como adicionar gráficos).
 
 arquivo_excel = "bigData.xlsx"
+# Define o nome do arquivo Excel que vamos ler.
 
+# Funções para gerar um relatório completo, utilizando o try e o excepect, logo abaixo:
+# Observação: As funções de relatórios são praticamentes as mesmas, muda somente na parte de seleção
+# de colunas de cada uma e na exibição.
 def gerar_relatorio_completo():
+
+    # Caso dê tudo certo ele irá rodar o try:
+
+    # abas = Lê TODAS as abas do Excel de uma vez.
+    # relatorio_completo = Junta (Concatena) todas as abas em um único relatório.
+    # relatorio final = Limpa o relatório, retirando as partes em branco (NaN).
+    # nome_arquivo_saida = Define o nome do novo arquivo Excel.
+    # relatorio_final.to_excel() = Salva o relatório limpo nesse novo arquivo).
+    # os.startfile() = Ao gerar o arquivo, ele o abre automaticamente.
+    # return = Retorna o nome do arquivo para o app (Flask) enviar ao usuário. 
+
     try:
         abas = pd.read_excel(arquivo_excel, sheet_name=None)
         relatorio_completo = pd.concat(abas.values(), ignore_index=True)
@@ -17,6 +38,12 @@ def gerar_relatorio_completo():
         os.startfile(nome_arquivo_saida) 
 
         return nome_arquivo_saida
+    
+    # Caso dê errado ele irá rodar o except:
+
+    # print = Exibe a mensagem de erro ao gerar relatório no terminal.
+    # return = Retorna vazio para o app (Flask).
+
     except Exception as e:
         print(f"Erro ao gerar relatório completo: {e}")
         return None
@@ -27,8 +54,11 @@ def gerar_relatorio_funcionarios():
         relatorio_completo = pd.concat(abas.values(), ignore_index=True)
         
         relatorio_final = relatorio_completo.dropna(subset=["Funcionário", "Data do Exame"])
+        # relatorio final = Limpa o relatório, retirando as partes em branco (NaN),
+        # aqui também selecionamos a coluna que queremos que limpe no relatório.
 
         relatorio_exibicao = relatorio_final[["Funcionário", "Data do Exame"]]
+        # relatorio_exibicao = Definimos as colunas limpas, que iremos exibir no relatório.
 
         nome_arquivo_saida = "Relatorio_Funcionarios.xlsx" 
 
