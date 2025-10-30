@@ -1,7 +1,7 @@
 🚀 Display Bird: Gerador de Relatórios e Gráficos
 O Display Bird é uma aplicação web completa desenvolvida em Python, que transforma uma planilha de dados brutos (bigData.xlsx) em relatórios e gráficos de Business Intelligence sob demanda. A interface web permite ao usuário selecionar o tipo de análise desejada, e o backend (Flask + Pandas) processa os dados, gera um novo arquivo .xlsx (seja um relatório ou um gráfico) e o disponibiliza para download imediato.
 
-![Tela Principal do Display Bird](./img/tela.png)
+![Tela Principal do Display Bird](./img/Bdiplay.png)
 
 ✨ Funcionalidades
 O sistema é capaz de ler múltiplas abas de um arquivo Excel, consolidar os dados e gerar as seguintes análises:
@@ -21,7 +21,7 @@ Este projeto combina tecnologias de frontend, backend e ciência de dados:
 
 Backend (Servidor):
 
-Python 3: A linguagem principal.
+Python 3.11.0: A linguagem principal.
 
 Flask: Micro-framework web responsável por:
 
