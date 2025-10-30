@@ -111,7 +111,7 @@ def gerar_relatorio_funcao():
         return nome_arquivo_saida
     except Exception as e:
 
-        print(f"Erro ao gerar relatório de exames: {e}")
+        print(f"Erro ao gerar relatório de função: {e}")
         return None
     
 def gerar_graficos_funcao():
