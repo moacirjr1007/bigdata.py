@@ -1,67 +1,72 @@
-🚀 Display Bird: Gerador de Relatórios e Gráficos
+
+# 🚀 Display Bird
 O Display Bird é uma aplicação web completa desenvolvida em Python, que transforma uma planilha de dados brutos (bigData.xlsx) em relatórios e gráficos de Business Intelligence sob demanda. A interface web permite ao usuário selecionar o tipo de análise desejada, e o backend (Flask + Pandas) processa os dados, gera um novo arquivo .xlsx (seja um relatório ou um gráfico) e o disponibiliza para download imediato.
+## 🖥️ Tela Principal
 
 <img width="1919" height="1079" alt="tela" src="https://github.com/user-attachments/assets/939ddbd5-a3c9-415c-ab19-09f5abe06db4" />
 
-✨ Funcionalidades
+
+## ✨ Funcionalidades
+
 O sistema é capaz de ler múltiplas abas de um arquivo Excel, consolidar os dados e gerar as seguintes análises:
 
-Relatório Completo: Gera um arquivo .xlsx contendo todos os dados de todas as abas, após uma limpeza (dropna) para remover linhas incompletas.
+- Relatório Completo: Gera um arquivo .xlsx contendo todos os dados de todas as abas, após uma limpeza (dropna) para remover linhas incompletas.
 
-Relatório de Funcionários: Gera um arquivo .xlsx focado nas colunas "Funcionário" e "Data do Exame", removendo linhas onde esses dados específicos estão ausentes.
+- Relatório de Funcionários: Gera um arquivo .xlsx focado nas colunas "Funcionário" e "Data do Exame", removendo linhas onde esses dados específicos estão ausentes.
 
-Relatório de Exames: Filtra e gera um relatório focado nas colunas "Exames" e "Data do Exame".
+- Relatório de Exames: Filtra e gera um relatório focado nas       colunas "Exames" e "Data do Exame".
 
-Relatório por Função: Filtra e gera um relatório focado nas colunas "Função" e "Data do Exame".
+- Relatório por Função: Filtra e gera um relatório focado nas colunas "Função" e "Data do Exame".
 
-Gráfico Top 15 Funções: Analisa todos os dados, conta a frequência de cada "Função", gera um gráfico de barras horizontal (com Matplotlib) com as "Top 15" e salva este gráfico dentro de um novo arquivo .xlsx (usando Openpyxl).
+- Gráfico Top 15 Funções: Analisa todos os dados, conta a frequência de cada "Função", gera um gráfico de barras horizontal (com Matplotlib) com as "Top 15" e salva este gráfico dentro de um novo arquivo .xlsx (usando Openpyxl).
 
-🛠️ Tecnologias Utilizadas
-Este projeto combina tecnologias de frontend, backend e ciência de dados:
+## 🛠️ Tecnologias Utilizadas
 
-Backend (Servidor):
+O sistema combina tecnologias de frontend, backend e ciência de dados:
 
-Python 3.11.0: A linguagem principal.
+- ### 🗄️ Backend (Servidor):
 
-Flask: Micro-framework web responsável por:
+    - Python 3.13.7: A linguagem principal.
 
-Servir a página HTML (render_template).
+    - Flask: Micro-framework web responsável por:
 
-Definir as rotas (@app.route).
+        - Servir a página HTML (render_template).
+        - Definir as rotas (@app.route).
+        - Receber os dados do formulário (request).
+        - Enviar os arquivos gerados para download (send_file).
 
-Receber os dados do formulário (request).
 
-Enviar os arquivos gerados para download (send_file).
+- ### 📊 Processamento de Dados e Gráficos:
 
-Processamento de Dados e Gráficos:
+    - Pandas: A principal ferramenta para ler, concatenar, filtrar  (dropna) e manipular os dados do Excel.
 
-Pandas: A principal ferramenta para ler, concatenar, filtrar (dropna) e manipular os dados do Excel.
+    - Matplotlib: Usada para criar e estilizar os gráficos.
 
-Matplotlib: Usada para criar e estilizar os gráficos.
+    - Openpyxl: Usada para criar um novo arquivo Excel "em branco" e inserir a imagem do gráfico (.png) dentro dele.
 
-Openpyxl: Usada para criar um novo arquivo Excel "em branco" e inserir a imagem do gráfico (.png) dentro dele.
+    - io (BytesIO): Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico antes de passá-la para o  Openpyxl.
 
-io (BytesIO): Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico antes de passá-la para o Openpyxl.
+- ### 🌐 Frontend (Interface):
 
-Frontend (Interface):
+    - HTML5: Estrutura semântica da página (incluindo a tag <form>).
 
-HTML5: Estrutura semântica da página (incluindo a tag <form>).
+    - CSS3: Estilização completa, incluindo:
 
-CSS3: Estilização completa, incluindo:
+    - Flexbox: Para centralizar e alinhar os elementos.
 
-Flexbox: Para centralizar e alinhar os elementos.
+    - Media Queries: Para garantir que o layout seja responsivo e funcione bem em celulares (max-width: 768px).
 
-Media Queries: Para garantir que o layout seja responsivo e funcione bem em celulares (max-width: 768px).
+    - Google Fonts: Para as fontes personalizadas ("Audiowide" e "Poppins").
 
-Google Fonts: Para as fontes personalizadas ("Audiowide" e "Poppins").
+- ### 📦 Ambiente:
 
-Ambiente:
+    - Virtual Environment (.venv): Para isolar as bibliotecas (Flask, Pandas, etc.) do sistema.
 
-Virtual Environment (.venv): Para isolar as bibliotecas (Flask, Pandas, etc.) do sistema.
 
-📁 Estrutura do Projeto
+## 📁 Estrutura do Sistema
 O projeto segue a estrutura padrão do Flask, que separa a lógica, os templates e os arquivos estáticos:
 
+```
 /bigdata.py/
 │
 ├── .venv/                   # Pasta do ambiente virtual com as bibliotecas
@@ -75,17 +80,21 @@ O projeto segue a estrutura padrão do Flask, que separa a lógica, os templates
 ├── relatorios_graficos.py   # O "trabalho pesado" - Funções com Pandas e Matplotlib
 ├── bigData.xlsx             # O arquivo de dados brutos
 └── README.md                (Este arquivo)
-⚙️ Como Executar o Projeto Localmente
-Clone o repositório:
+```
 
-Bash
+## ⚙️ Como Executar o Sistema Localmente: 
 
-git clone [https://github.com/moacirjr1007/bigdata.py.git]
-cd bigdata.py
-Crie e ative o ambiente virtual:
+- ### Clone o repositório:
 
-Bash
 
+```bash
+  git clone [https://github.com/moacirjr1007/bigdata.py.git]
+  cd bigdata.py
+```
+
+- ### Crie e ative o ambiente virtual:
+
+```bash
 # Criar
 python -m venv .venv
 
@@ -96,12 +105,22 @@ python -m venv .venv
 source .venv/bin/activate
 Instale as dependências: (Você pode criar um arquivo requirements.txt ou instalar manualmente)
 
-Bash
+```
 
+- ### Instale as bibliotecas necessárias:
+
+```bash
 pip install Flask pandas matplotlib openpyxl
 Execute o servidor Flask:
+```
+- ### Execute o sistema no seu computador:
 
-Bash
-
+```bash
 python app.py
 Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
+```
+    
+## Autores
+
+- [@moacirjr1007](https://www.github.com/octokatherine)
+
