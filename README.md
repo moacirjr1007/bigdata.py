@@ -122,5 +122,5 @@ Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
     
 ## Autores
 
-- [@moacirjr1007](https://www.github.com/octokatherine)
+- [@moacirjr1007](https://www.github.com/moacirjr1007)
 
