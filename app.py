@@ -40,9 +40,9 @@ def gerar_relatorio():
         elif escolha == "relatorio_funcao":
             nome_arquivo_gerado = relatorios_graficos.gerar_relatorio_funcao()
         elif escolha == "grafico_funcionarios":
-            pass
+             nome_arquivo_gerado = relatorios_graficos.gerar_graficos_funcionarios()
         elif escolha == "grafico_exames":
-            pass
+             nome_arquivo_gerado = relatorios_graficos.gerar_graficos_exames()
         elif escolha == "grafico_funcao":
             nome_arquivo_gerado = relatorios_graficos.gerar_graficos_funcao()
 
