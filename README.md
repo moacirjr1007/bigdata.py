@@ -129,4 +129,9 @@ Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
 ## Autores
 
 - [@moacirjr1007](https://www.github.com/moacirjr1007)
+- [@JNetoJS](https://www.github.com/JNetoJS)
+- [@JoseGabriel10](https://www.github.com/JoseGabriel10)
+- [@vineyINSIDER](https://www.github.com/vineyINSIDER)
+- [@Marceloflr](https://www.github.com/Marceloflr)
+- [@Vnslwn](https://www.github.com/Vnslwn)
 
