@@ -115,94 +115,6 @@ def gerar_relatorio_funcao():
         print(f"Erro ao gerar relatório de função: {e}")
         return None
     
-def gerar_graficos_funcao():
-    """Gera gráfico das TOP 15 funções com mais exames"""
-    try:
-        # Carrega e processa dados
-        abas = pd.read_excel("bigData.xlsx", sheet_name=None)
-        dados = pd.concat(abas.values(), ignore_index=True)
-        
-        # Top 15 funções
-        top_funcoes = dados['Função'].value_counts().head(15)
-        
-        # Configura e plota gráfico
-        plt.figure(figsize=(12, 6))
-        plt.barh(top_funcoes.index, top_funcoes.values, color=plt.cm.viridis(range(15)))
-        plt.title(f'TOP 15 FUNÇÕES\n (2022-2025)')
-        plt.gca().invert_yaxis()
-        
-        # Salva no Excel
-        wb = Workbook()
-        img = io.BytesIO()
-        plt.savefig(img, format="png", bbox_inches="tight")
-        wb.active.add_image(drawing.image.Image(img), 'A1')
-        
-        nome_arquivo = "Grafico_Funcao.xlsx"
-        wb.save(nome_arquivo)
-        os.startfile(nome_arquivo)
-        
-        return nome_arquivo
-        
-    except Exception as e:
-        print(f"Erro: {e}")
-        return None
-
-def gerar_graficos_exames():
-    
-    try:
-        
-        # 1. LEITURA E PREPARAÇÃO DOS DADOS (PANDAS)
-        # Lê todas as abas do arquivo Excel e concatena os dados.
-        abas = pd.read_excel(arquivo_excel, sheet_name=None)
-        dados_completos = pd.concat(abas.values(), ignore_index=True)
-
-        # 2. CONFIGURAÇÃO E GERAÇÃO DO GRÁFICO (MATPLOTLIB)
-        
-        # Define a figura e seu tamanho.
-        plt.figure(figsize=(12, 5))
-        
-        # Calcula o TOP 10 dos exames realizados.
-        top_exames = dados_completos['Exames'].value_counts().head(10) 
-
-        # Gera o gráfico de barras horizontal com o mapa de cores 'plasma'.
-        plt.barh(top_exames.index, top_exames.values, color=plt.cm.plasma(range(10))) 
-        
-        # Define título, rótulo do eixo X e inverte o eixo Y.
-        plt.title(f'TOP 10 EXAMES REALIZADOS\n (2022-2025)')
-        plt.xlabel('Quantidade de Exames')
-        plt.gca().invert_yaxis() 
-        
-        # Ajusta o layout para evitar cortes e pega a figura.
-        plt.tight_layout() 
-        grafico_completo = plt.gcf()
-
-        # 3. SALVAR GRÁFICO NO ARQUIVO EXCEL (OPENPYXL)
-        
-        # Inicializa o arquivo Excel e o buffer de imagem.
-        wb = Workbook()
-        img = io.BytesIO()
-
-        # Salva o gráfico como PNG no buffer e reposiciona o ponteiro.
-        grafico_completo.savefig(img, format="png", bbox_inches="tight")
-        img.seek(0) 
-
-        # Adiciona a imagem à primeira célula do Excel.
-        planilha_ativa = wb.active
-        planilha_ativa.add_image(drawing.image.Image(img), 'A1')
-
-        # Salva o arquivo final e o abre.
-        nome_arquivo_saida = "Grafico_Exames.xlsx"
-        wb.save(nome_arquivo_saida)
-        os.startfile(nome_arquivo_saida)
-        
-        # Retorna o nome do arquivo.
-        return nome_arquivo_saida
-    
-    except Exception as e:
-        # Em caso de erro, exibe a mensagem e retorna None.
-        print(f"Erro ao gerar gráfico de exames: {e}")
-        return None
-    
 def gerar_graficos_funcionarios():
 
     try:
@@ -280,4 +192,92 @@ def gerar_graficos_funcionarios():
     
     except Exception as e:
         print(f"Erro ao gerar gráfico de funcionários: {e}")
+        return None
+    
+def gerar_graficos_exames():
+    
+    try:
+        
+        # 1. LEITURA E PREPARAÇÃO DOS DADOS (PANDAS)
+        # Lê todas as abas do arquivo Excel e concatena os dados.
+        abas = pd.read_excel(arquivo_excel, sheet_name=None)
+        dados_completos = pd.concat(abas.values(), ignore_index=True)
+
+        # 2. CONFIGURAÇÃO E GERAÇÃO DO GRÁFICO (MATPLOTLIB)
+        
+        # Define a figura e seu tamanho.
+        plt.figure(figsize=(12, 5))
+        
+        # Calcula o TOP 10 dos exames realizados.
+        top_exames = dados_completos['Exames'].value_counts().head(10) 
+
+        # Gera o gráfico de barras horizontal com o mapa de cores 'plasma'.
+        plt.barh(top_exames.index, top_exames.values, color=plt.cm.plasma(range(10))) 
+        
+        # Define título, rótulo do eixo X e inverte o eixo Y.
+        plt.title(f'TOP 10 EXAMES REALIZADOS\n (2022-2025)')
+        plt.xlabel('Quantidade de Exames')
+        plt.gca().invert_yaxis() 
+        
+        # Ajusta o layout para evitar cortes e pega a figura.
+        plt.tight_layout() 
+        grafico_completo = plt.gcf()
+
+        # 3. SALVAR GRÁFICO NO ARQUIVO EXCEL (OPENPYXL)
+        
+        # Inicializa o arquivo Excel e o buffer de imagem.
+        wb = Workbook()
+        img = io.BytesIO()
+
+        # Salva o gráfico como PNG no buffer e reposiciona o ponteiro.
+        grafico_completo.savefig(img, format="png", bbox_inches="tight")
+        img.seek(0) 
+
+        # Adiciona a imagem à primeira célula do Excel.
+        planilha_ativa = wb.active
+        planilha_ativa.add_image(drawing.image.Image(img), 'A1')
+
+        # Salva o arquivo final e o abre.
+        nome_arquivo_saida = "Grafico_Exames.xlsx"
+        wb.save(nome_arquivo_saida)
+        os.startfile(nome_arquivo_saida)
+        
+        # Retorna o nome do arquivo.
+        return nome_arquivo_saida
+    
+    except Exception as e:
+        # Em caso de erro, exibe a mensagem e retorna None.
+        print(f"Erro ao gerar gráfico de exames: {e}")
+        return None
+
+def gerar_graficos_funcao():
+    """Gera gráfico das TOP 15 funções com mais exames"""
+    try:
+        # Carrega e processa dados
+        abas = pd.read_excel("bigData.xlsx", sheet_name=None)
+        dados = pd.concat(abas.values(), ignore_index=True)
+        
+        # Top 15 funções
+        top_funcoes = dados['Função'].value_counts().head(15)
+        
+        # Configura e plota gráfico
+        plt.figure(figsize=(12, 6))
+        plt.barh(top_funcoes.index, top_funcoes.values, color=plt.cm.viridis(range(15)))
+        plt.title(f'TOP 15 FUNÇÕES\n (2022-2025)')
+        plt.gca().invert_yaxis()
+        
+        # Salva no Excel
+        wb = Workbook()
+        img = io.BytesIO()
+        plt.savefig(img, format="png", bbox_inches="tight")
+        wb.active.add_image(drawing.image.Image(img), 'A1')
+        
+        nome_arquivo = "Grafico_Funcao.xlsx"
+        wb.save(nome_arquivo)
+        os.startfile(nome_arquivo)
+        
+        return nome_arquivo
+        
+    except Exception as e:
+        print(f"Erro: {e}")
         return None
