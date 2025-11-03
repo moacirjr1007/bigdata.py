@@ -6,8 +6,12 @@ import matplotlib.pyplot as plt # Utilizado para gerar gráficos.
 import io # Salva dados (como imagens de gráficos) na memória.
 import os # O 'os' (Sistema Operacional) nos deixa interagir com arquivos e pastas.
 
-from openpyxl import Workbook, drawing  
-# É uma ferramenta extra para trabalhar com arquivos Excel (como adicionar gráficos).
+from openpyxl import Workbook, drawing, load_workbook
+# É uma ferramenta extra para trabalhar com arquivos Excel (como adicionar gráficos e organizar tamanho de células).
+from openpyxl.styles import Border, Side
+# É uma ferramenta extra para adicionar as bordas nos relatórios
+from openpyxl.utils import get_column_letter
+# É uma ferramenta que ajuda a pegar a letra da coluna
 
 arquivo_excel = "bigData.xlsx"
 # Define o nome do arquivo Excel que vamos ler.
@@ -24,6 +28,23 @@ def gerar_relatorio_completo():
     # relatorio final = Limpa o relatório, retirando as partes em branco (NaN).
     # nome_arquivo_saida = Define o nome do novo arquivo Excel.
     # relatorio_final.to_excel() = Salva o relatório limpo nesse novo arquivo).
+    # wb = Reabre o arquivo Excel que o Pandas acabou de salvar.
+    # ws = Pega a aba (planilha) principal onde os dados estão.
+    # thin_border = Cria um "molde" de borda fina para todos os 4 lados da célula.
+    # for row = "Visita" cada linha da planilha que tem dados.
+    # for cell = "Visita" cada célula dentro da linha atual.
+    # cell.border = Aplica o "molde" da borda na célula atual.
+    # for col_idx = "Visita" cada coluna (pelo número, ex: 1, 2, 3...).
+    # column_letter = Converte o número (ex: 1) para a letra (ex: 'A').
+    # max_length = Cria a "régua" (zerada) para medir a largura da coluna.
+    # for cell = "Visita" cada célula dentro da coluna atual (ex: 'A').
+    # try = Tenta medir o texto, por segurança.
+    # if len(...) = Se o texto da célula for maior que o recorde.
+    # except = Ignora se der erro
+    # max_length = Atualiza o recorde com o novo tamanho.    
+    # adjusted_width = Adiciona um "respiro" (+2) ao recorde de largura.
+    # ws.column_dimensions[...] = Define a largura da coluna (ex: 'A') para o novo valor.
+    # wb.save = Salva o arquivo Excel (sobrescreve) com as novas larguras e bordas.
     # os.startfile() = Ao gerar o arquivo, ele o abre automaticamente.
     # return = Retorna o nome do arquivo para o app (Flask) enviar ao usuário. 
 
@@ -35,6 +56,36 @@ def gerar_relatorio_completo():
 
         nome_arquivo_saida = "Relatorio_Completo.xlsx"
         relatorio_final.to_excel(nome_arquivo_saida, index=False)
+
+        wb = load_workbook(nome_arquivo_saida)
+        ws = wb.active
+
+        thin_border = Border(
+            left = Side(style = "thin"),
+            right= Side(style = "thin"),
+            top = Side(style = "thin"),
+            bottom = Side(style = "thin"),
+        )
+
+        for row in ws.rows:
+            for cell in row:
+                cell.border = thin_border
+
+        for col_idx in range(1, ws.max_column + 1):
+            column_letter = get_column_letter(col_idx)
+            max_length = 0
+            
+            for cell in ws[column_letter]:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            
+            adjusted_width = (max_length + 2)
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+        wb.save(nome_arquivo_saida)
 
         os.startfile(nome_arquivo_saida) 
 
@@ -65,6 +116,36 @@ def gerar_relatorio_funcionarios():
 
         relatorio_exibicao.to_excel(nome_arquivo_saida, index=False)
 
+        wb = load_workbook(nome_arquivo_saida)
+        ws = wb.active
+
+        thin_border = Border(
+            left = Side(style = "thin"),
+            right= Side(style = "thin"),
+            top = Side(style = "thin"),
+            bottom = Side(style = "thin"),
+        )
+
+        for row in ws.rows:
+            for cell in row:
+                cell.border = thin_border
+
+        for col_idx in range(1, ws.max_column + 1):
+            column_letter = get_column_letter(col_idx)
+            max_length = 0
+            
+            for cell in ws[column_letter]:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            
+            adjusted_width = (max_length + 2)
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+        wb.save(nome_arquivo_saida)
+
         os.startfile(nome_arquivo_saida) 
 
         return nome_arquivo_saida
@@ -86,6 +167,36 @@ def gerar_relatorio_exames():
 
         relatorio_exibicao.to_excel(nome_arquivo_saida, index = False)
 
+        wb = load_workbook(nome_arquivo_saida)
+        ws = wb.active
+
+        thin_border = Border(
+            left = Side(style = "thin"),
+            right= Side(style = "thin"),
+            top = Side(style = "thin"),
+            bottom = Side(style = "thin"),
+        )
+
+        for row in ws.rows:
+            for cell in row:
+                cell.border = thin_border
+
+        for col_idx in range(1, ws.max_column + 1):
+            column_letter = get_column_letter(col_idx)
+            max_length = 0
+            
+            for cell in ws[column_letter]:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            
+            adjusted_width = (max_length + 2)
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+        wb.save(nome_arquivo_saida)
+
         os.startfile(nome_arquivo_saida) 
 
         return nome_arquivo_saida
@@ -106,6 +217,36 @@ def gerar_relatorio_funcao():
         nome_arquivo_saida = "Relatorio_Funcao.xlsx"
 
         relatorio_exibicao.to_excel(nome_arquivo_saida, index = False)
+
+        wb = load_workbook(nome_arquivo_saida)
+        ws = wb.active
+
+        thin_border = Border(
+            left = Side(style = "thin"),
+            right= Side(style = "thin"),
+            top = Side(style = "thin"),
+            bottom = Side(style = "thin"),
+        )
+
+        for row in ws.rows:
+            for cell in row:
+                cell.border = thin_border
+
+        for col_idx in range(1, ws.max_column + 1):
+            column_letter = get_column_letter(col_idx)
+            max_length = 0
+            
+            for cell in ws[column_letter]:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            
+            adjusted_width = (max_length + 2)
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+        wb.save(nome_arquivo_saida)
 
         os.startfile(nome_arquivo_saida) 
 
