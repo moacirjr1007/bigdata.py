@@ -126,12 +126,14 @@ python app.py
 Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
 ```
     
-## Autores
+## Autores/Funções
 
-- [@moacirjr1007](https://www.github.com/moacirjr1007)
-- [@JNetoJS](https://www.github.com/JNetoJS)
-- [@JoseGabriel10](https://www.github.com/JoseGabriel10)
-- [@vineyINSIDER](https://www.github.com/vineyINSIDER)
-- [@Marceloflr](https://www.github.com/Marceloflr)
-- [@Vnslwn](https://www.github.com/Vnslwn)
+- [@moacirjr1007](https://www.github.com/moacirjr1007) Full Stack Developer and Documenter
+- [@Marceloflr](https://www.github.com/Marceloflr) Data Visualization Developer
+- [@JNetoJS](https://www.github.com/JNetoJS) Data Visualization Developer
+- [@vineyINSIDER](https://www.github.com/vineyINSIDER) Technical Support and Collaboration Facilitator
+- [@Vnslwn](https://www.github.com/Vnslwn) Scriptwriter / Extension Organizer
+- [@JoseGabriel10](https://www.github.com/JoseGabriel10) Scriptwriter / Extension Organizer
+
+
 
