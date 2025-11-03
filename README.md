@@ -10,15 +10,19 @@ O Display Bird é uma aplicação web completa desenvolvida em Python, que trans
 
 O sistema é capaz de ler múltiplas abas de um arquivo Excel, consolidar os dados e gerar as seguintes análises:
 
-- Relatório Completo: Gera um arquivo .xlsx contendo todos os dados de todas as abas, após uma limpeza (dropna) para remover linhas incompletas.
+- Relatório Completo: Gera uma visão geral completa de todos os dados do Excel, unificando todas as abas e limpando os espaços em branco.
 
-- Relatório de Funcionários: Gera um arquivo .xlsx focado nas colunas "Funcionário" e "Data do Exame", removendo linhas onde esses dados específicos estão ausentes.
+- Relatório de Funcionários: Cria uma lista organizada de funcionários e suas respectivas datas de exame.
 
-- Relatório de Exames: Filtra e gera um relatório focado nas       colunas "Exames" e "Data do Exame".
+- Relatório de Exames: Gera um relatório simples mostrando quais exames foram realizados e em quais datas.
 
-- Relatório por Função: Filtra e gera um relatório focado nas colunas "Função" e "Data do Exame".
+- Relatório por Função: Mostra quais funções (cargos) tiveram exames realizados e quando, permitindo acompanhar os exames por tipo de função dentro da empresa.
 
-- Gráfico Top 15 Funções: Analisa todos os dados, conta a frequência de cada "Função", gera um gráfico de barras horizontal (com Matplotlib) com as "Top 15" e salva este gráfico dentro de um novo arquivo .xlsx (usando Openpyxl).
+- Gráfico Top 10 Funcionários - Mais Exames Realizados: Mostra quais funcionários mais realizaram exames e quantos foram feitos por cada um, destacando visualmente o ranking dos 10 primeiros.
+
+- Gráfico Top 10 Exames Realizados: Mostra quais são os exames mais comuns realizados no período analisado e quantas vezes cada um aparece.
+
+- Gráfico Top 15 Funções: Mostra quais cargos/funções mais aparecem nos exames e quantos exames foram realizados por cada função.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -38,13 +42,15 @@ O sistema combina tecnologias de frontend, backend e ciência de dados:
 
 - ### 📊 Processamento de Dados e Gráficos:
 
-    - Pandas: A principal ferramenta para ler, concatenar, filtrar  (dropna) e manipular os dados do Excel.
+    - Pandas: A principal ferramenta para ler, concatenar, filtrar e manipular os dados do Excel.
 
     - Matplotlib: Usada para criar e estilizar os gráficos.
 
-    - Openpyxl: Usada para criar um novo arquivo Excel "em branco" e inserir a imagem do gráfico (.png) dentro dele.
+    - Openpyxl: Biblioteca usada para criar e editar arquivos Excel (.xlsx) direto pelo Python.
 
-    - io (BytesIO): Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico antes de passá-la para o  Openpyxl.
+    - io: Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico antes de passá-la para o  Openpyxl.
+    
+    - os: Permite interagir com o sistema operacional, como abrir arquivos, criar pastas, verificar caminhos.
 
 - ### 🌐 Frontend (Interface):
 
@@ -76,10 +82,10 @@ O projeto segue a estrutura padrão do Flask, que separa a lógica, os templates
 ├── templates/
 │   └── principal.html       # Nosso arquivo de interface (HTML)
 │
+├── README.md                (Este arquivo)
 ├── app.py                   # O "cérebro" - Servidor Flask e rotas
-├── relatorios_graficos.py   # O "trabalho pesado" - Funções com Pandas e Matplotlib
 ├── bigData.xlsx             # O arquivo de dados brutos
-└── README.md                (Este arquivo)
+└── relatorios_graficos.py   # O "trabalho pesado" - Funções com Pandas e Matplotlib
 ```
 
 ## ⚙️ Como Executar o Sistema Localmente: 
