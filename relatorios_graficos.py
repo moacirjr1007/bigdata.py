@@ -1,18 +1,14 @@
 # Bibliotecas utilizadas:
-import pandas as pd
-import matplotlib.pyplot as plt
+import pandas as pd # Biblioteca para manipular arquivos excell
+import matplotlib.pyplot as plt # Biblioteca para gerar gráficos e estilizar
 import io # Usado para criar "arquivos falsos" na memória RAM
 import base64 # Importante: Usado para converter imagens em texto
-import numpy as np
-
-# (Não precisamos mais de 'os', 'openpyxl', 'Border', 'Side', 'get_column_letter')
+import numpy as np # Gera a sequência de números (np.linspace) para criar o degradê de cores dos gráficos.
 
 
 # Define o nome do arquivo Excel que vamos ler.
 arquivo_excel = "bigData.xlsx"
 
-
-# --- Funções de Relatório (AGORA RETORNAM TABELAS) ---
 
 def gerar_relatorio_completo():
     """Lê, junta e limpa todos os dados."""
