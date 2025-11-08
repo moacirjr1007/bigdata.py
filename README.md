@@ -1,6 +1,6 @@
 
 # 🚀 Display Bird
-O Display Bird é uma aplicação web completa desenvolvida em Python, que transforma uma planilha de dados brutos (bigData.xlsx) em relatórios e gráficos de Business Intelligence sob demanda. A interface web permite ao usuário selecionar o tipo de análise desejada, e o backend (Flask + Pandas) processa os dados, gera um novo arquivo .xlsx (seja um relatório ou um gráfico) e o disponibiliza para download imediato.
+O Display Bird é uma aplicação web completa desenvolvida em Python, que transforma uma planilha de dados brutos (bigData.xlsx) em relatórios e gráficos de Business Intelligence sob demanda. A interface web permite ao usuário selecionar o tipo de análise desejada, e o backend (Flask + Pandas) processa os dados, exibindo os resultados instantaneamente em uma nova página da web, que apresenta tabelas de dados ou gráficos interativos.
 ## 🖥️ Tela Principal
 
 <img width="1919" height="1079" alt="tela" src="https://github.com/user-attachments/assets/939ddbd5-a3c9-415c-ab19-09f5abe06db4" />
@@ -37,8 +37,7 @@ O sistema combina tecnologias de frontend, backend e ciência de dados:
         - Servir a página HTML (render_template).
         - Definir as rotas (@app.route).
         - Receber os dados do formulário (request).
-        - Enviar os arquivos gerados para download (send_file).
-
+        - "Injetar" os dados do Python no template HTML de resultados.
 
 - ### 📊 Processamento de Dados e Gráficos:
 
@@ -46,11 +45,11 @@ O sistema combina tecnologias de frontend, backend e ciência de dados:
 
     - Matplotlib: Usada para criar e estilizar os gráficos.
 
-    - Openpyxl: Biblioteca usada para criar e editar arquivos Excel (.xlsx) direto pelo Python.
+    - NumPy: Usado para criar as sequências numéricas (np.linspace) para o degradê de cores dos gráficos.
 
-    - io: Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico antes de passá-la para o  Openpyxl.
+    - io (BytesIO): Usado como um "arquivo temporário" na memória RAM para salvar a imagem do gráfico.
     
-    - os: Permite interagir com o sistema operacional, como abrir arquivos, criar pastas, verificar caminhos.
+    - Base64: Usado para converter a imagem da memória em um texto (string) que o HTML consegue exibir.
 
 - ### 🌐 Frontend (Interface):
 
@@ -101,30 +100,30 @@ O projeto segue a estrutura padrão do Flask, que separa a lógica, os templates
 - ### Crie e ative o ambiente virtual:
 
 ```bash
-# Criar
-python -m venv .venv
-
-# Ativar (Windows PowerShell)
-.\.venv\Scripts\Activate.ps1
-
-# Ativar (Linux/Mac)
-source .venv/bin/activate
-Instale as dependências: (Você pode criar um arquivo requirements.txt ou instalar manualmente)
-
+    # Criar o ambiente
+    python -m venv .venv
+    
+    # Ativar (Windows PowerShell)
+    .\.venv\Scripts\Activate.ps1
 ```
 
 - ### Instale as bibliotecas necessárias:
 
 ```bash
-pip install Flask pandas matplotlib openpyxl
-Execute o servidor Flask:
+    pip install Flask pandas matplotlib numpy
 ```
-- ### Execute o sistema no seu computador:
+- ### Execute o servidor Flask:
 
 ```bash
-python app.py
-Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
+    python app.py
+    Acesse no seu navegador: Abra o seu navegador e vá para http://127.0.0.1:5000
 ```
+
+- ### Execute o servidor Flask:
+
+
+  - Abra o seu navegador e vá para http://127.0.0.1:5000
+
     
 ## Autores/Funções
 
